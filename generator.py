@@ -73,7 +73,7 @@ class InteriorGenerator:
 
         return res
 
-    def generate_image_prompt(self, full_description, res_image_name="generated_image.png"):
+    def generate_image_prompt(self, full_description, res_image_name="test.png"):
         prompt = f"Создай реалистичное изображение интерьера комнаты. {full_description}"
 
         response = self.client.models.generate_content(
@@ -89,5 +89,5 @@ class InteriorGenerator:
                 print(part.text)
             elif part.inline_data is not None:
                 image = Image.open(BytesIO((part.inline_data.data)))
-                image.save(f'/images/generated_images/{res_image_name}')
+                image.save(f'/images/generated/{res_image_name}')
                 image.show()

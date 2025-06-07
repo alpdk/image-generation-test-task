@@ -27,14 +27,14 @@ def main():
     gen = InteriorGenerator(args)
 
     furniture_style = gen.extract_style_from_image("test.jpg")
-    print("Style:", furniture_style)
+    print("Style:", furniture_style, end="\n\n")
 
     room_description = "Светлая гостиная с большим окном, деревянным полом и нейтральной цветовой гаммой."
     interior_text = gen.generate_interior(room_description, furniture_style)
-    print("Interior Prompt:", interior_text)
+    print("Interior Prompt:", interior_text, end="\n\n")
 
     image_prompt = gen.generate_image_prompt(interior_text)
-    print("Prompt for image generator:", image_prompt)
+    print("Prompt for image generator:", image_prompt, end="\n\n")
 
 
 if __name__ == '__main__':
