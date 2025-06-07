@@ -26,7 +26,7 @@ def main():
     args = parser()
     gen = InteriorGenerator(args)
 
-    furniture_style = gen.extract_style_from_image("images/test.jpg")
+    furniture_style = gen.extract_style_from_image("test.jpg")
     print("Style:", furniture_style)
 
     room_description = "Светлая гостиная с большим окном, деревянным полом и нейтральной цветовой гаммой."
