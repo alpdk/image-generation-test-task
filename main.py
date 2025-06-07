@@ -20,17 +20,22 @@ def parser():
     parser.add_argument('gemini_api_key', type=str,
                         help='api key for the gemini')
 
+    parser.add_argument('furniture_reference', type=str,
+                        help='Name of the file with furniture picture')
+
+    parser.add_argument('room_description', type=str,
+                        help='Name of the file with room description')
+
     return parser.parse_args()
 
 def main():
     args = parser()
     gen = InteriorGenerator(args)
 
-    furniture_style = gen.extract_style_from_image("test.jpg")
+    furniture_style = gen.extract_style_from_image(args.furniture_reference)
     print("Style:", furniture_style, end="\n\n")
 
-    room_description = "Светлая гостиная с большим окном, деревянным полом и нейтральной цветовой гаммой."
-    interior_text = gen.generate_interior(room_description, furniture_style)
+    interior_text = gen.generate_interior(args.room_description, furniture_style)
     print("Interior Prompt:", interior_text, end="\n\n")
 
     image_prompt = gen.generate_image_prompt(interior_text)

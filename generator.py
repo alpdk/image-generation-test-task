@@ -1,3 +1,4 @@
+import os
 import random
 
 from google import genai
@@ -34,7 +35,10 @@ class InteriorGenerator:
         Returns:
              res (str): string containing the extracted information
         """
-        image = Image.open(f"images/furniture/{image_name}")
+        path = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(path, f"images/furniture/{image_name}")
+
+        image = Image.open(path)
 
         response = self.client.models.generate_content(
             model=self.model_name,
@@ -59,7 +63,13 @@ class InteriorGenerator:
         Returns:
              res (str): string containing the full room description
         """
-        prompt = f"Сгенерируй описание интерьера комнаты в стиле: {furniture_style}, на основе следующего описания: {room_description}"
+        path = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(path, f"room_descriptions/{room_description}")
+
+        file = open(path)
+        description = file.read()
+
+        prompt = f"Сгенерируй описание интерьера комнаты в стиле: {furniture_style}, на основе следующего описания: {description}"
 
         response = self.client.models.generate_content(
             model=self.model_name,
@@ -73,7 +83,7 @@ class InteriorGenerator:
 
         return res
 
-    def generate_image_prompt(self, full_description, res_image_name="test.png"):
+    def generate_image_prompt(self, full_description, res_image_name="test.jpg"):
         prompt = f"Создай реалистичное изображение интерьера комнаты. {full_description}"
 
         response = self.client.models.generate_content(
@@ -84,10 +94,12 @@ class InteriorGenerator:
             )
         )
 
+        path = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(path, f"images/generated/{res_image_name}")
+
         for part in response.candidates[0].content.parts:
             if part.text is not None:
                 print(part.text)
             elif part.inline_data is not None:
                 image = Image.open(BytesIO((part.inline_data.data)))
-                image.save(f'/images/generated/{res_image_name}')
-                image.show()
+                image.save(path)
