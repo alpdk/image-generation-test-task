@@ -1,5 +1,4 @@
 import os
-import random
 
 from google import genai
 from google.genai import types
@@ -22,7 +21,6 @@ class InteriorGenerator:
         """
         self.seed = args.seed
         self.model_name = args.model_name
-        random.seed(args.seed)
         self.client = genai.Client(api_key=args.gemini_api_key)
 
     def extract_style_from_image(self, image_name):
@@ -44,7 +42,8 @@ class InteriorGenerator:
             model=self.model_name,
             contents=["Опиши стиль и дизайн мебели на изображении.", image],
             config=types.GenerateContentConfig(
-                response_modalities=['Text']
+                response_modalities=['Text'],
+                seed=self.seed
             )
         )
 
@@ -75,7 +74,8 @@ class InteriorGenerator:
             model=self.model_name,
             contents=[prompt],
             config=types.GenerateContentConfig(
-                response_modalities=['Text']
+                response_modalities=['Text'],
+                seed=self.seed
             )
         )
 
@@ -90,7 +90,8 @@ class InteriorGenerator:
             model=self.model_name,
             contents=[prompt],
             config=types.GenerateContentConfig(
-                response_modalities=['Text', 'Image']
+                response_modalities=['Text', 'Image'],
+                seed=self.seed
             )
         )
 
