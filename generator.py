@@ -69,7 +69,7 @@ class InteriorGenerator:
         file = open(path)
         description = file.read()
 
-        prompt = f"Сгенерируй описание интерьера комнаты в стиле: {furniture_style}, на основе следующего описания: {description}"
+        prompt = f"Сгенерируй описание интерьера комнаты на основе описания комнаты: {description}, и на основе стиля мебели: {furniture_style}"
 
         response = self.client.models.generate_content(
             model=self.model_name,
