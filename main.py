@@ -41,8 +41,7 @@ def main():
     interior_text = gen.generate_interior(args.room_description, furniture_style)
     print("Interior Prompt:", interior_text, end="\n\n")
 
-    image_prompt = gen.generate_image_prompt(interior_text)
-    print("Prompt for image generator:", image_prompt, end="\n\n")
+    gen.generate_image_prompt(interior_text)
 
 
 if __name__ == '__main__':
