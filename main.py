@@ -14,6 +14,9 @@ def parser():
     parser.add_argument('seed', type=int,
                         help='Seed for random generation')
 
+    parser.add_argument('temperature', type=float,
+                        help='Model temperature')
+
     parser.add_argument('model_name', type=str,
                         help='Gemini model name')
 

@@ -20,6 +20,7 @@ class InteriorGenerator:
             api_key (str): api key for the model
         """
         self.seed = args.seed
+        self.temperature = args.temperature
         self.model_name = args.model_name
         self.client = genai.Client(api_key=args.gemini_api_key)
 
@@ -43,6 +44,7 @@ class InteriorGenerator:
             contents=["Опиши стиль и дизайн мебели на изображении.", image],
             config=types.GenerateContentConfig(
                 response_modalities=['Text'],
+                temperature=self.temperature,
                 seed=self.seed
             )
         )
@@ -75,6 +77,7 @@ class InteriorGenerator:
             contents=[prompt],
             config=types.GenerateContentConfig(
                 response_modalities=['Text'],
+                temperature=self.temperature,
                 seed=self.seed
             )
         )
@@ -91,6 +94,7 @@ class InteriorGenerator:
             contents=[prompt],
             config=types.GenerateContentConfig(
                 response_modalities=['Text', 'Image'],
+                temperature=self.temperature,
                 seed=self.seed
             )
         )
