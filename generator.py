@@ -87,6 +87,13 @@ class InteriorGenerator:
         return res
 
     def generate_image_prompt(self, full_description, res_image_name="test.jpg"):
+        """
+        Method fo generating and saving images from the room and furniture description
+
+        Parameters:
+             full_description (str): room and furniture descriptions
+             res_image_name (str): name of the image for saving it
+        """
         prompt = f"Создай реалистичное изображение интерьера комнаты. {full_description}"
 
         response = self.client.models.generate_content(

@@ -32,6 +32,9 @@ def parser():
     return parser.parse_args()
 
 def main():
+    """
+    Main function for generating furniture description and room image
+    """
     args = parser()
     gen = InteriorGenerator(args)
 

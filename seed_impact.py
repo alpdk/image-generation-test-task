@@ -7,6 +7,12 @@ from tqdm import tqdm
 
 
 def test_repeatability(num_runs=10):
+    """
+    Method for identifying amount of unique outputs from the model with respect to the seed and temperature
+
+    Parameters:
+         num_runs (int): number of repetitions
+    """
     args = parser()
 
     style_results = []
