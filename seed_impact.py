@@ -29,11 +29,11 @@ def test_repeatability(num_runs=10):
     unique_styles = set(style_results)
     unique_interiors = set(interior_results)
 
-    repeated_styles = num_runs - len(unique_styles)
-    repeated_interiors = num_runs - len(unique_interiors)
+    unique_styles = len(unique_styles)
+    unique_interiors = len(unique_interiors)
 
-    print(f"[Style Description] Repeated in {repeated_styles} of {num_runs} runs.")
-    print(f"[Interior Generation] Repeated in {repeated_interiors} of {num_runs} runs.")
+    print(f"[Style Description] Unique in {unique_styles} of {num_runs} runs.")
+    print(f"[Interior Generation] Unique in {unique_interiors} of {num_runs} runs.")
 
 
 if __name__ == "__main__":

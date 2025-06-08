@@ -103,8 +103,6 @@ class InteriorGenerator:
         path = os.path.join(path, f"images/generated/{res_image_name}")
 
         for part in response.candidates[0].content.parts:
-            if part.text is not None:
-                print(part.text)
-            elif part.inline_data is not None:
+            if part.inline_data is not None:
                 image = Image.open(BytesIO((part.inline_data.data)))
                 image.save(path)
